@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <!-- Primary Meta Tags -->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>DEMI — Creative Developer & Designer</title>
+    <meta name="description" content="DEMI — Frontend developer & designer. I build beautiful, accessible, and high-performance web apps. Portfolio of projects and skills." />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="DEMI — Creative Developer & Designer" />
+    <meta property="og:description" content="Frontend developer & designer building beautiful, accessible web apps." />
+    <meta property="og:image" content="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0b5deb93-89fb-4ae1-96df-e0a6d5aca717.png" />
+    <meta property="og:url" content="" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DEMI — Creative Developer & Designer" />
+    <meta name="twitter:description" content="Frontend developer & designer building beautiful, accessible web apps." />
+    <meta name="twitter:image" content="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0b5deb93-89fb-4ae1-96df-e0a6d5aca717.png" />
+
+    <!-- Favicons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+    <link rel="mask-icon" href="#" color="#0b3d91">
+
+    <!-- Preconnect & Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN (quick) + small fallback utilities -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lottie (optional micro-animations) -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- AOS for entrance animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Font Awesome (icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Small CSS reset & theme variables -->
+    <style>
+        :root{
+            /* Light theme (default) palette: navy / teal / neutral */
+            --bg-1: #f4f7fb;
+            --bg-2: #e9f1f9;
+            --muted: #6b7280;
+            --text: #0f1724;
+            --accent-1: #0b3d91; /* deep navy */
+            --accent-2: #0e7490; /* teal blue */
+            --glass: rgba(255,255,255,0.92);
+            --card: #ffffff;
+            --radius: 12px;
+            --nav-text: #374151;
+            --card-contrast: rgba(2,6,23,0.04);
+        }
+
+        /* Dark theme override (apply by adding .dark on <html> or <body>) */
+        .dark {
+            --bg-1: #07101a;
+            --bg-2: #07161f;
+            --muted: #9aa4b2;
+            --text: #e6eef8;
+            --accent-1: #4ea8ff;
+            --accent-2: #7ce3d9;
+            --glass: rgba(10,16,24,0.6);
+            --card: #0b1220;
+            --radius: 12px;
+            --nav-text: #cbd5e1;
+            --card-contrast: rgba(255,255,255,0.03);
+        }
+
+        *{box-sizing:border-box}
+        html,body,#root{height:100%}
+        body{
+            margin:0;
+            font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            color:var(--text);
+            background: linear-gradient(135deg,var(--bg-1) 0%, var(--bg-2) 100%);
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            -webkit-tap-highlight-color: transparent;
+            line-height:1.5;
+        }
+        /* small utility to limit width */
+        .container {max-width:1100px;margin:0 auto;padding:0 20px;}
+        /* animated glass nav */
+        nav {
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            background: linear-gradient(180deg, var(--glass), rgba(250,250,252,0.85));
+            box-shadow:0 6px 24px var(--card-contrast);
+        }
+        .dark nav {
+            background: linear-gradient(180deg, var(--glass), rgba(10,16,24,0.6));
+        }
+        .logo{
+            font-weight:800;
+            background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+            background-clip:text;
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent
+        }
+        /* buttons */
+        .btn-primary{
+            background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+            color:white;
+            padding:.6rem 1.1rem;
+            border-radius:999px;
+            font-weight:600;
+            box-shadow:0 8px 20px rgba(11,61,145,0.12);
+            display:inline-flex;
+            gap:.6rem;
+            align-items:center;
+            text-decoration:none;
+        }
+        .btn-outline{
+            border:1px solid rgba(14,116,144,0.08);
+            padding:.55rem 1rem;
+            border-radius:999px;
+            color:var(--accent-1);
+            font-weight:600;
+            background:transparent;
+            text-decoration:none;
+        }
+        /* simple cards */
+        .card{
+            background:var(--card);
+            border-radius:var(--radius);
+            box-shadow:0 12px 30px var(--card-contrast);
+            overflow:hidden
+        }
+        /* hero layout */
+        .hero{min-height:82vh;display:grid;grid-template-columns: 1fr 420px;align-items:center;gap:32px;padding:90px 0}
+        .hero h1{font-size:2.6rem;line-height:1.03}
+        .hero p{color:var(--muted);max-width:48ch;margin-top:.6rem}
+        .skill-pill{display:inline-flex;align-items:center;gap:.5rem;background:#eef6fb;padding:.4rem .7rem;border-radius:999px;font-weight:600;color:#274156}
+        .dark .skill-pill{background:rgba(255,255,255,0.03); color:var(--muted)}
+        /* responsive */
+        @media (max-width:980px){
+            .hero{grid-template-columns:1fr; padding:110px 0 60px}
+            .hero-illustration {order: -1; margin-bottom: 12px}
+        }
+        @media (max-width:640px){
+            .hero h1{font-size:1.9rem}
+            .hero{padding:86px 0 60px}
+        }
+        /* small interactive hover */
+        a:hover{opacity:.95;transform: translateY(0)}
+        /* Lottie illustration moved to CSS (avoid inline styles) */
+        .lottie-illustration { width:100%; height:320px; display:block; }
+        /* scroll-top */
+        .scroll-top{
+            position:fixed;right:28px;bottom:28px;width:48px;height:48px;border-radius:999px;
+            background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+            display:flex;align-items:center;justify-content:center;color:white;
+            box-shadow:0 8px 26px rgba(11,61,145,0.18);z-index:60;
+            opacity:0; pointer-events:none; transition:opacity .18s ease-in-out;
+        }
+        /* small utility */
+        .text-muted { color:var(--muted); }
+
+        /* Basic overrides for some tailwind gray utility classes so they look OK in dark */
+        .dark .text-gray-600 { color: var(--muted) !important; }
+        .dark .text-gray-500 { color: rgba(255,255,255,0.75) !important; }
+        .dark .bg-gray-100 { background: rgba(255,255,255,0.03) !important; }
+        .dark .border-gray-200 { border-color: rgba(255,255,255,0.04) !important; }
+        .dark .text-gray-300 { color: rgba(255,255,255,0.7) !important; }
+        .dark .text-gray-400 { color: rgba(255,255,255,0.6) !important; }
+        .dark .text-gray-200 { color: rgba(255,255,255,0.85) !important; }
+        .dark .text-white { color: #e6eef8 !important; }
+        .dark .bg-white\/6 { background: rgba(255,255,255,0.03) !important; }
+        .dark .bg-white { background: transparent !important; } /* cards handle their own bg */
+        .dark .w-12.h-12.rounded-lg.bg-gradient-to-br.from-slate-50.to-slate-50 { background: rgba(255,255,255,0.03) !important; color: var(--accent-1) !important; }
+
+        /* Mobile nav specifics */
+        #mobileNav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 48;
+            background: linear-gradient(180deg, var(--glass), rgba(250,250,252,0.95));
+            box-shadow: 0 8px 28px var(--card-contrast);
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height .28s cubic-bezier(.2,.9,.2,1), opacity .18s ease;
+            pointer-events: none;
+            border-top: 1px solid rgba(14,116,144,0.04);
+        }
+        .dark #mobileNav {
+            background: linear-gradient(180deg, var(--glass), rgba(10,16,24,0.7));
+            border-top-color: rgba(255,255,255,0.04);
+        }
+        #mobileNav.open {
+            max-height: 520px; /* enough for list, adjusts with content */
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #mobileNav .mobile-links a {
+            display: block;
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--nav-text);
+            text-decoration: none;
+        }
+        #mobileNav .mobile-links a:hover {
+            background: rgba(11,61,145,0.04);
+        }
+        .dark #mobileNav .mobile-links a:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        /* make nav compact on mobile */
+        nav.w-full.fixed.top-0.z-50 .container { padding-top:10px; padding-bottom:10px; }
+        @media (min-width:768px){
+            /* remove mobile nav styles on larger screens */
+            #mobileNav { display: none !important; }
+            nav.w-full.fixed.top-0.z-50 .container { padding-top:14px; padding-bottom:14px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="w-full fixed top-0 z-50">
+        <div class="container flex items-center justify-between py-4">
+            <div class="flex items-center gap-4">
+                <div class="logo text-2xl">DEMI</div>
+                <div class="hidden md:flex items-center gap-2 text-sm text-gray-600">
+                    <span class="px-2 py-0.5 bg-gradient-to-r from-slate-50 to-slate-50 rounded-full text-xs font-medium text-slate-700">Frontend • UI</span>
+                    <span class="text-xs text-gray-400">•</span>
+                    <span class="text-sm text-gray-500">Open to work</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-6 text-sm">
+                <a class="text-gray-600 hover:text-indigo-600" href="#home">Home</a>
+                <a class="text-gray-600 hover:text-indigo-600" href="#about">About</a>
+                <a class="text-gray-600 hover:text-indigo-600" href="#skills">Skills</a>
+                <a class="text-gray-600 hover:text-indigo-600" href="#projects">Projects</a>
+                <a class="text-gray-600 hover:text-indigo-600" href="#contact">Contact</a>
+                <a href="#contact" class="btn-primary">Hire Me</a>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <!-- Theme toggle -->
+                <button id="themeToggle" aria-pressed="false" title="Toggle dark mode" class="p-2 rounded-md text-gray-700 hover:bg-gray-100 md:mr-2">
+                    <i id="themeIcon" class="fas fa-moon"></i>
+                </button>
+
+                <!-- Mobile menu toggle -->
+                <button id="mobileBtn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100">
+                    <i id="mobileIcon" class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile nav (kept inside nav so top:100% works reliably) -->
+        <div id="mobileNav" class="">
+            <div class="container py-4">
+                <div class="mobile-links flex flex-col gap-2">
+                    <a href="#home" class="text-sm">Home</a>
+                    <a href="#about" class="text-sm">About</a>
+                    <a href="#skills" class="text-sm">Skills</a>
+                    <a href="#projects" class="text-sm">Projects</a>
+                    <a href="#contact" class="text-sm">Contact</a>
+                    <a href="#contact" class="btn-primary">Hire Me</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <main class="pt-20">
+        <section id="home" class="container hero">
+            <div data-aos="fade-up" data-aos-duration="700">
+                <h1 class="font-extrabold">Creative Developer & Designer</h1>
+                <p class="mt-4">I build performant, accessible, and delightful user interfaces — combining clean code, UX-led design, and a focus on measurable outcomes. Available for roles, freelance, and school projects.</p>
+
+                <div class="mt-6 flex flex-wrap gap-3 items-center">
+                    <a href="#projects" class="btn-primary"><i class="fas fa-laptop-code"></i> View My Work</a>
+                    <a href="#contact" class="btn-outline">Get in Touch</a>
+                    <span class="ml-2 hidden sm:inline-flex skill-pill"><i class="fab fa-react text-blue-600"></i> React • Tailwind</span>
+                </div>
+
+                <div class="mt-8 grid gap-3 sm:grid-cols-2">
+                    <div class="card p-4 flex gap-3 items-center">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-slate-50 to-slate-50 flex items-center justify-center text-indigo-600">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500">Experience</div>
+                            <div class="font-semibold">5+ Years</div>
+                        </div>
+                    </div>
+                    <div class="card p-4 flex gap-3 items-center">
+                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-slate-50 to-slate-50 flex items-center justify-center text-indigo-600">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500">Impact</div>
+                            <div class="font-semibold">Shipping polished products</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Illustration (Lottie + fallback image) -->
+            <div class="hero-illustration flex items-center justify-center" data-aos="fade-left" data-aos-duration="700">
+                <img src="asset/undraw_programming_65t2.svg" alt="Metrics illustration" class="lottie-illustration" loading="lazy" />
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="container my-20"></section>
+            <div class="card p-6 relative overflow-hidden" data-aos="fade-up">
+                <!-- decorative blob -->
+                <svg class="absolute -right-20 -top-10 opacity-30" width="260" height="260" viewBox="0 0 260 260" fill="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="g1" x1="0" x2="1">
+                            <stop offset="0" stop-color="#0b3d91"/>
+                            <stop offset="1" stop-color="#0e7490"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="80" cy="60" r="120" fill="url(#g1)"></circle>
+                </svg>
+
+                <div class="grid md:grid-cols-3 gap-6 items-center">
+                    <!-- Avatar / hero -->
+                    <div class="md:col-span-1 flex items-center gap-4">
+                        <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-indigo-600 to-teal-400 flex items-center justify-center text-white text-3xl font-extrabold shadow-lg">
+                            <span aria-hidden="true">🎓</span>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-400">Hello, I’m</div>
+                            <div class="text-2xl font-extrabold">DEMI</div>
+                            <div class="text-sm text-gray-300">Computer Science Student • Frontend Enthusiast</div>
+                        </div>
+                    </div>
+
+                    <!-- Eye-catching headline & pitch -->
+                    <div class="md:col-span-2">
+                        <h3 class="text-2xl font-extrabold mb-2">Building beautiful interfaces while learning fast</h3>
+                        <p class="text-gray-600 mb-4">
+                            I’m a student passionate about accessible, performant web apps. I love turning design ideas into polished experiences — currently exploring React, animations, and design systems. Open to internships and collaborations.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 mb-4">
+                            <span class="skill-pill"><i class="fab fa-html5 text-orange-500"></i> HTML</span>
+                            <span class="skill-pill"><i class="fab fa-css3-alt text-blue-600"></i> CSS</span>
+                            <span class="skill-pill"><i class="fab fa-js-square text-yellow-500"></i> JavaScript</span>
+                            <span class="skill-pill"><i class="fab fa-react text-sky-500"></i> React</span>
+                            <span class="skill-pill hidden sm:inline-flex"><i class="fas fa-palette text-pink-400"></i> UI Design</span>
+                        </div>
+
+                        <div class="grid sm:grid-cols-3 gap-3 mb-4">
+                            <div class="p-3 rounded-lg bg-white/6 text-white text-center">
+                                <div class="text-sm text-gray-200">Projects</div>
+                                <div class="font-bold text-lg">8+</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-white/6 text-white text-center">
+                                <div class="text-sm text-gray-200">Internships</div>
+                                <div class="font-bold text-lg">1</div>
+                            </div>
+                            <div class="p-3 rounded-lg bg-white/6 text-white text-center">
+                                <div class="text-sm text-gray-200">GPA</div>
+                                <div class="font-bold text-lg">3.8</div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="#projects" class="btn-primary" title="See projects"><i class="fas fa-laptop-code"></i> See Projects</a>
+                            <a href="#contact" class="btn-outline">Hire / Intern Me</a>
+                            <a href="#" class="text-sm text-gray-500 px-3 py-2 rounded-md border border-transparent hover:border-white/10">Resume</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- quick interests (small footer inside card) -->
+                <div class="mt-6 flex flex-wrap gap-3 text-sm text-gray-500">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-lightbulb text-yellow-400"></i> Learning: Animation & Accessibility
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-robot text-indigo-400"></i> Exploring: AI & Interfaces
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-music text-pink-400"></i> Hobbies: Music & Illustration
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="container my-20">
+            <h2 class="text-3xl font-extrabold mb-8" data-aos="fade-up">Skills</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card p-6" data-aos="zoom-in">
+                    <div class="text-3xl text-indigo-600"><i class="fas fa-code"></i></div>
+                    <h4 class="mt-4 font-semibold">Frontend</h4>
+                    <p class="mt-2 text-sm text-gray-600">HTML, CSS, JavaScript, React, Vue, TypeScript</p>
+                </div>
+                <div class="card p-6" data-aos="zoom-in" data-aos-delay="80">
+                    <div class="text-3xl text-indigo-600"><i class="fas fa-paint-brush"></i></div>
+                    <h4 class="mt-4 font-semibold">UI/UX</h4>
+                    <p class="mt-2 text-sm text-gray-600">Figma, prototyping, user flows, accessibility</p>
+                </div>
+                <div class="card p-6" data-aos="zoom-in" data-aos-delay="160">
+                    <div class="text-3xl text-indigo-600"><i class="fas fa-database"></i></div>
+                    <h4 class="mt-4 font-semibold">Backend</h4>
+                    <p class="mt-2 text-sm text-gray-600">Node.js, Python, Firebase, REST & GraphQL</p>
+                </div>
+                <div class="card p-6" data-aos="zoom-in" data-aos-delay="240">
+                    <div class="text-3xl text-indigo-600"><i class="fas fa-server"></i></div>
+                    <h4 class="mt-4 font-semibold">DevOps</h4>
+                    <p class="mt-2 text-sm text-gray-600">CI/CD, Docker, Vercel, Netlify</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="container my-20">
+            <h2 class="text-3xl font-extrabold mb-8" data-aos="fade-right">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card overflow-hidden" data-aos="fade-up">
+                    <div class="h-56 bg-gray-100">
+                        <img class="object-cover w-full h-full" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/39478b21-92d1-441d-8222-dd4c96cef8a2.png" alt="">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold">E-Commerce Platform</h3>
+                        <p class="mt-2 text-sm text-gray-600">Modern storefront and admin dashboard with analytics and product workflows.</p>
+                        <div class="mt-3 flex gap-2 flex-wrap">
+                            <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">React</span>
+                            <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">Node.js</span>
+                            <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">MongoDB</span>
+                        </div>
+                        <div class="mt-4">
+                            <a class="btn-outline" href="#">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden" data-aos="fade-up" data-aos-delay="60">
+                    <div class="h-56 bg-gray-100">
+                        <img class="object-cover w-full h-full" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/42af3958-ffbb-4dea-af65-cb173e0b4f65.png" alt="">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-semibold">Social Media App</h3>
+                        <p class="mt-2 text-sm text-gray-600">Mobile-first platform with real-time messaging and content features.</p>
+                        <div class="mt-3 flex gap-2 flex-wrap">
+                            <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">React Native</span>
+                            <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">Firebase</span>
+                            <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">Redux</span>
+                        </div>
+                        <div class="mt-4">
+                            <a class="btn-outline" href="#">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="container my-20">
+            <h2 class="text-3xl font-extrabold mb-6" data-aos="fade-right">Get in Touch</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div data-aos="fade-up">
+                    <div class="card p-6">
+                        <h4 class="font-semibold">Contact Info</h4>
+                        <p class="mt-3 text-gray-600">I'm available for full-time roles, freelance projects, and school collaboration.</p>
+                        <div class="mt-4 space-y-3">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-50 to-slate-50 flex items-center justify-center text-indigo-600"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <div class="text-xs text-gray-500">Email</div>
+                                    <div class="font-semibold">enochadeboye29@gmail.com</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-50 to-slate-50 flex items-center justify-center text-indigo-600"><i class="fas fa-phone"></i></div>
+                                <div>
+                                    <div class="text-xs text-gray-500">Phone</div>
+                                    <div class="font-semibold">+234 (0) 80-3849-6100</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-slate-50 to-slate-50 flex items-center justify-center text-indigo-600"><i class="fas fa-map-marker-alt"></i></div>
+                                <div>
+                                    <div class="text-xs text-gray-500">Location</div>
+                                    <div class="font-semibold">Baale street Itamaga, Ikorodu, Lagos</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 flex items-center gap-3">
+                            <a class="text-gray-600 hover:text-indigo-400" href="#" aria-label="GitHub" title="GitHub"><i class="fab fa-github fa-lg"></i></a>
+                            <a class="text-gray-600 hover:text-indigo-400" href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>
+                            <a class="text-gray-600 hover:text-indigo-400" href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="80">
+                    <div class="card p-6">
+                        <form id="contactForm">
+                            <div class="grid gap-4">
+                                <label class="block">
+                                    <div class="text-sm font-medium text-gray-700">Name</div>
+                                    <input required name="name" id="name" class="mt-1 p-3 rounded-lg border border-gray-200 w-full" placeholder="Your name">
+                                </label>
+                                <label class="block">
+                                    <div class="text-sm font-medium text-gray-700">Email</div>
+                                    <input required type="email" name="email" id="email" class="mt-1 p-3 rounded-lg border border-gray-200 w-full" placeholder="you@example.com">
+                                </label>
+                                <label class="block">
+                                    <div class="text-sm font-medium text-gray-700">Message</div>
+                                    <textarea required name="message" id="message" rows="6" class="mt-1 p-3 rounded-lg border border-gray-200 w-full" placeholder="Tell me about your project or opportunity..."></textarea>
+                                </label>
+                                <div>
+                                    <button type="submit" class="btn-primary w-full justify-center"><i class="fas fa-paper-plane"></i> Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 mt-20">
+        <div class="container py-10 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="text-white font-bold text-lg">DEMI</div>
+                <div class="text-sm text-gray-400">© 2025 DEMI. All rights reserved.</div>
+            </div>
+            <div class="flex items-center gap-2">
+                <a class="p-2 rounded-md hover:bg-gray-800" href="#" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                <a class="p-2 rounded-md hover:bg-gray-800" href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a class="p-2 rounded-md hover:bg-gray-800" href="#" aria-label="Dribbble" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+                <a class="p-2 rounded-md hover:bg-gray-800" href="#" aria-label="Twitter" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a class="p-2 rounded-md hover:bg-gray-800" href="#" aria-label="instagram" title="instagram"><i class="fab fa-instagram"></i></a>
+                <a class="p-2 rounded-md hover:bg-gray-800" href="#" aria-label="whatsapp" title="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a class="p-2 rounded-md hover:bg-gray-800" href="#" aria-label="facebook" title="facebook"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top -->
+    <a href="#home" class="scroll-top" id="scrollTop" title="Back to top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script>
+        // AOS init
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({once:true});
+        });
+
+        // Theme handling: toggles .dark on <html>, persists choice, respects prefers-color-scheme
+        (function(){
+            const root = document.documentElement;
+            const toggle = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            const storageKey = 'site-theme';
+
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    root.classList.add('dark');
+                    toggle.setAttribute('aria-pressed','true');
+                    icon.className = 'fas fa-sun';
+                } else {
+                    root.classList.remove('dark');
+                    toggle.setAttribute('aria-pressed','false');
+                    icon.className = 'fas fa-moon';
+                }
+                try { localStorage.setItem(storageKey, theme); } catch(e){}
+            }
+
+            // choose initial theme
+            let saved = null;
+            try { saved = localStorage.getItem(storageKey); } catch(e){}
+            if (saved === 'dark' || saved === 'light') {
+                applyTheme(saved);
+            } else {
+                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                applyTheme(prefersDark ? 'dark' : 'light');
+            }
+
+            toggle?.addEventListener('click', () => {
+                const isDark = root.classList.contains('dark');
+                applyTheme(isDark ? 'light' : 'dark');
+            });
+        })();
+
+        // Mobile nav toggle (improved)
+        (function(){
+            const mobileBtn = document.getElementById('mobileBtn');
+            const mobileIcon = document.getElementById('mobileIcon');
+            const mobileNav = document.getElementById('mobileNav');
+
+            function openMobileNav() {
+                mobileNav.classList.add('open');
+                mobileBtn.setAttribute('aria-expanded', 'true');
+                mobileIcon.className = 'fas fa-times';
+            }
+            function closeMobileNav() {
+                mobileNav.classList.remove('open');
+                mobileBtn.setAttribute('aria-expanded', 'false');
+                mobileIcon.className = 'fas fa-bars';
+            }
+
+            mobileBtn?.addEventListener('click', () => {
+                if (mobileNav.classList.contains('open')) closeMobileNav();
+                else openMobileNav();
+            });
+
+            // Close menu when a mobile link is clicked
+            mobileNav?.querySelectorAll('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', () => {
+                    // allow smooth scroll to run, then close
+                    setTimeout(closeMobileNav, 250);
+                });
+            });
+
+            // Close mobile nav on resize to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768 && mobileNav.classList.contains('open')) {
+                    closeMobileNav();
+                }
+            });
+
+            // Close on Escape key
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+                    closeMobileNav();
+                }
+            });
+        })();
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e){
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+            });
+        });
+
+        // scroll to top visibility
+        const scrollTopButton = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 350) {
+                scrollTopButton.style.opacity = '1';
+                scrollTopButton.style.pointerEvents = 'auto';
+            } else {
+                scrollTopButton.style.opacity = '0';
+                scrollTopButton.style.pointerEvents = 'none';
+            }
+        });
+
+        // contact form basic handler
+        document.getElementById('contactForm')?.addEventListener('submit', function(e){
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (!name || !email || !message) {
+                alert('Please fill all fields.');
+                return;
+            }
+            // Replace this with real API call or email integration
+            alert("Thanks, " + name + "! I'll get back to you soon.");
+            this.reset();
+        });
+    </script>
+</body>
+</html>
